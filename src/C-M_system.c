@@ -8,7 +8,9 @@
          _POSIX_C_SOURCE should be #defined instead of __USE_POSIX according
          to standard, but __USE_POSIX appears to need to be declared
    */
-#   define _POSIX_C_SOURCE
+#ifndef HAVE_HOST_NAME_MAX
+#define POSIX_HOST_NAME_MAX 64 /* or 255? */
+#endif
 #endif
 #include <dirent.h>
 #include <errno.h>
@@ -24,6 +26,7 @@
 #include <sys/utsname.h>
 #include <unistd.h>
 #include <utime.h>
+#include <sys/param.h>
 
 #define MIN(x,y)  ((x) < (y) ? (x) : (y))
 
